@@ -79,8 +79,8 @@ const Index = () => {
 
     if (assignments[validName]) {
       toast({
-        title: `🎁 ${validName}, you've already been assigned!`,
-        description: `Your target is: ${assignments[validName]}`,
+        title: `🎁 ${validName}, you're already enrolled!`,
+        description: `Contact admin to know who your Secret Santa target is.`,
       });
       return;
     }
