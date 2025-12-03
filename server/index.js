@@ -51,7 +51,15 @@ app.post('/api/login', async (req, res) => {
 // Get All Users (for the wheel)
 app.get('/api/users', async (req, res) => {
     try {
-        const users = await User.find({}, { name: 1, username: 1, _id: 0 });
+        // Get list of users who have already been assigned as receivers
+        const assignments = await Assignment.find({}, { receiver: 1 });
+        const assignedReceivers = assignments.map(a => a.receiver);
+
+        // Find users who are NOT in the assignedReceivers list
+        const users = await User.find({
+            username: { $nin: assignedReceivers }
+        }, { name: 1, username: 1, _id: 0 });
+
         res.json(users);
     } catch (error) {
         console.error('Error fetching users:', error);
