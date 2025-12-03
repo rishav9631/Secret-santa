@@ -2,51 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Outfit:wght@300;400;500;700&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 90%;
-
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 90%;
-
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 90%;
-
-    --primary: 355 100% 64%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 145 63% 49%;
-    --secondary-foreground: 0 0% 5%;
-
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
-
-    --accent: 45 100% 50%;
-    --accent-foreground: 0 0% 5%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 355 100% 64%;
-
-    --radius: 0.75rem;
-
-    /* Custom tokens */
-    --glow-primary: 0 0 30px hsl(355 100% 64% / 0.5);
-    --glow-secondary: 0 0 30px hsl(145 63% 49% / 0.5);
-    --glow-accent: 0 0 20px hsl(45 100% 50% / 0.6);
-    --glass: 0 0% 100% / 0.1;
-    --cylinder: 220 15% 18%;
-  }
-
-  .dark {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 90%;
+    --background: 220 30% 15%;
+    /* Dark Blue/Night Sky */
+    --foreground: 210 40% 98%;
+    --card: 222 40% 20%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 350 89% 60%;
+    /* Christmas Red */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 150 80% 40%;
+    /* Christmas Green */
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 43 96% 64%;
+    /* Gold */
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 25%;
+    --input: 217 33% 17%;
+    --ring: 224 76% 48%;
+    --radius: 1rem;
   }
 }
 
@@ -56,103 +39,58 @@
   }
 
   body {
-    @apply bg-background text-foreground font-mono antialiased;
-    font-family: 'JetBrains Mono', monospace;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Outfit', sans-serif;
+    background: #000000;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Mountains of Christmas', cursive;
   }
 }
 
 @layer utilities {
-  .text-glow-primary {
-    text-shadow: var(--glow-primary);
+  .glass-panel {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-xl;
   }
 
-  .text-glow-secondary {
-    text-shadow: var(--glow-secondary);
-  }
-
-  .text-glow-accent {
-    text-shadow: var(--glow-accent);
-  }
-
-  .box-glow-primary {
-    box-shadow: var(--glow-primary);
-  }
-
-  .box-glow-secondary {
-    box-shadow: var(--glow-secondary);
-  }
-
-  .glass-effect {
-    background: hsl(var(--glass));
-    backdrop-filter: blur(10px);
+  .text-shadow-glow {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
   }
 }
 
-@keyframes fall {
-  to {
-    transform: translateY(100vh) rotate(360deg);
-  }
+/* Snow/Ice Animation */
+.snowflake {
+  position: fixed;
+  top: -10px;
+  color: white;
+  animation: fall linear forwards;
+  z-index: 50;
+  pointer-events: none;
 }
 
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes reveal {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10vh) translateX(0);
     opacity: 1;
-    transform: scale(1);
   }
-}
 
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 20px hsl(45 100% 50% / 0.6);
-  }
-  50% {
-    box-shadow: 0 0 40px hsl(45 100% 50% / 0.8);
-  }
-}
-
-@keyframes ball-orbit {
-  0% {
-    transform: rotate(0deg) translateX(140px) rotate(0deg);
-  }
   100% {
-    transform: rotate(360deg) translateX(140px) rotate(-360deg);
+    transform: translateY(110vh) translateX(20px);
+    opacity: 0.3;
   }
 }
 
-@keyframes ball-slow-down {
-  0% {
-    transform: rotate(0deg) translateX(140px);
-  }
-  100% {
-    transform: rotate(180deg) translateX(100px);
-  }
-}
-
-.animate-fall {
-  animation: fall linear infinite;
-}
-
-.animate-spin-slow {
-  animation: spin-slow 2s linear infinite;
-}
-
-.animate-reveal {
-  animation: reveal 0.5s ease-out forwards;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+/* Frost Effect */
+.frost-overlay {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
 }

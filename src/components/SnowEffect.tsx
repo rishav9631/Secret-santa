@@ -1,27 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 interface Snowflake {
   id: number;
-  left: string;
-  animationDuration: string;
+  left: number;
+  animationDuration: number;
   opacity: number;
-  fontSize: string;
+  size: number;
+  delay: number;
 }
 
-const SnowEffect = () => {
+export function SnowEffect() {
   const [snowflakes, setSnowflakes] = useState<Snowflake[]>([]);
 
   useEffect(() => {
-    const flakes: Snowflake[] = [];
-    for (let i = 0; i < 80; i++) {
-      flakes.push({
-        id: i,
-        left: `${Math.random() * 100}%`,
-        animationDuration: `${Math.random() * 3 + 2}s`,
-        opacity: Math.random() * 0.7 + 0.3,
-        fontSize: `${Math.random() * 8 + 6}px`,
-      });
-    }
+    const flakes = Array.from({ length: 50 }).map((_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      animationDuration: Math.random() * 5 + 5, // 5-10 seconds for slower, floaty feel
+      opacity: Math.random() * 0.5 + 0.3,
+      size: Math.random() * 10 + 5,
+      delay: Math.random() * 5,
+    }));
     setSnowflakes(flakes);
   }, []);
 
@@ -30,20 +29,17 @@ const SnowEffect = () => {
       {snowflakes.map((flake) => (
         <div
           key={flake.id}
-          className="absolute animate-fall"
+          className="absolute top-[-20px] rounded-full bg-white blur-[1px]"
           style={{
-            left: flake.left,
-            animationDuration: flake.animationDuration,
+            left: `${flake.left}%`,
+            width: `${flake.size}px`,
+            height: `${flake.size}px`,
             opacity: flake.opacity,
-            fontSize: flake.fontSize,
-            top: "-20px",
+            animation: `snowfall ${flake.animationDuration}s linear infinite`,
+            animationDelay: `${flake.delay}s`,
           }}
-        >
-          ❄️
-        </div>
+        />
       ))}
     </div>
   );
-};
-
-export default SnowEffect;
+}
