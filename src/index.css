@@ -123,6 +123,24 @@
   }
 }
 
+@keyframes ball-orbit {
+  0% {
+    transform: rotate(0deg) translateX(140px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(140px) rotate(-360deg);
+  }
+}
+
+@keyframes ball-slow-down {
+  0% {
+    transform: rotate(0deg) translateX(140px);
+  }
+  100% {
+    transform: rotate(180deg) translateX(100px);
+  }
+}
+
 .animate-fall {
   animation: fall linear infinite;
 }
