@@ -16,7 +16,7 @@ const MASTER_LIST = [
   "Rahul",
   "Sneha",
   "Vikram",
-  "Anita",
+  "Anuja",
   "Raj",
   "Meera",
   "David",
