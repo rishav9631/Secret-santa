@@ -6,6 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Lock, Unlock } from "lucide-react";
 import { SnowEffect } from "@/components/SnowEffect";
 import { format } from "date-fns";
+import { API_URL } from "@/config";
 
 interface Assignment {
     _id: string;
@@ -33,7 +34,6 @@ export default function Admin() {
 
     const fetchAssignments = async () => {
         try {
-            const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
             const response = await fetch(`${API_URL}/api/admin/assignments`);
             const data = await response.json();
             setAssignments(data);

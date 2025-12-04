@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import { Gift, Snowflake as SnowflakeIcon } from "lucide-react";
 import { SnowEffect } from "@/components/SnowEffect";
 
+import { API_URL } from "@/config";
+
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -19,7 +21,6 @@ export default function Login() {
         setLoading(true);
 
         try {
-            const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
             const response = await fetch(`${API_URL}/api/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

@@ -7,6 +7,8 @@ import { Gift, LogOut, Sparkles } from "lucide-react";
 import confetti from "canvas-confetti";
 import { SnowEffect } from "@/components/SnowEffect";
 
+import { API_URL } from "@/config";
+
 interface User {
     name: string;
     username: string;
@@ -18,8 +20,6 @@ export default function Dashboard() {
     const [spinning, setSpinning] = useState(false);
     const [assignedTo, setAssignedTo] = useState<User | null>(null);
     const navigate = useNavigate();
-
-    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
     useEffect(() => {
         const storedUser = localStorage.getItem("user");
