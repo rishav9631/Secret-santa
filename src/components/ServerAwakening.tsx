@@ -11,7 +11,7 @@ export function ServerAwakening({ onAwake }: ServerAwakeningProps) {
     const [message, setMessage] = useState("Waking up the elves...");
 
     useEffect(() => {
-        const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+        const API_URL = import.meta.env.VITE_API_URL || "https://secret-santa-3-6bng.onrender.com";
         let attempts = 0;
         const maxAttempts = 30; // 30 attempts * 2s = 60s max wait (usually takes 15-30s on Render free tier)
 
