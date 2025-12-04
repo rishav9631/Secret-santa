@@ -13,14 +13,16 @@ function App() {
   return (
     <BrowserRouter>
       {!isServerReady && <ServerAwakening onAwake={() => setIsServerReady(true)} />}
-      <div className={!isServerReady ? "hidden" : ""}>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/malikji" element={<Admin />} />
-          <Route path="/" element={<Navigate to="/login" replace />} />
-        </Routes>
-      </div>
+      {isServerReady && (
+        <div>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/malikji" element={<Admin />} />
+            <Route path="/" element={<Navigate to="/login" replace />} />
+          </Routes>
+        </div>
+      )}
       <Toaster />
     </BrowserRouter>
   );

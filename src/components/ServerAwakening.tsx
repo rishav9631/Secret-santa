@@ -31,15 +31,13 @@ export function ServerAwakening({ onAwake }: ServerAwakeningProps) {
             const percentage = Math.min((attempts / 15) * 100, 95); // Fake progress up to 95% based on expected 15s
             setProgress(percentage);
 
-            if (attempts < maxAttempts) {
-                if (attempts > 5) setMessage("Brewing hot cocoa...");
-                if (attempts > 10) setMessage("Shoveling snow off the server...");
-                if (attempts > 15) setMessage("Almost there! Free tier servers are sleepy...");
+            if (attempts > 5) setMessage("Brewing hot cocoa...");
+            if (attempts > 10) setMessage("Shoveling snow off the server...");
+            if (attempts > 15) setMessage("Almost there! Free tier servers are sleepy...");
+            if (attempts > 30) setMessage("Still waiting... The elves are taking their time.");
+            if (attempts > 60) setMessage("Just a little longer... Santa is checking the list.");
 
-                setTimeout(checkHealth, 1000);
-            } else {
-                setMessage("The elves are sleeping in. Please refresh to try again.");
-            }
+            setTimeout(checkHealth, 1000);
         };
 
         checkHealth();
